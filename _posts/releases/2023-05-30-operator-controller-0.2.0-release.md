@@ -1,12 +1,6 @@
 ---
 layout: post
 title: Operator Controller v0.2.0 released!
-linkTitle: Operator Controller v0.2.0
-description: >
-  The latest version of the Operator Controller was released on May 30, 2023.
-author: >
-  [Operator Framework](https://github.com/operator-framework)
-date: 2023-05-30
 tags: operator-controller
 ---
 # Operator Controller v0.2.0
