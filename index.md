@@ -1,32 +1,45 @@
----
-title: Home
-layout: home
----
+# Why are we building OLM v1?
 
-This is a *bare-minimum* template to create a Jekyll site that uses the [Just the Docs] theme. You can easily set the created site to be published on [GitHub Pages] – the [README] file explains how to do that, along with other details.
+Operator-lifecycle-manager's mission has been to manage the lifecycle of cluster extensions centrally and declaratively on Kubernetes clusters. Its purpose has always been to make installing, 
+running, and updating functional extensions to the cluster easy, safe, and reproducible for cluster administrators and PaaS administrators, throughout the lifecycle of the underlying cluster. 
 
-If [Jekyll] is installed on your computer, you can also build and preview the created site *locally*. This lets you test changes before committing them, and avoids waiting for GitHub Pages.[^1] And you will be able to deploy your local build to a different platform than GitHub Pages.
+OLM so far has focused on providing unique support for these specific needs for a particular type of cluster extension, which have been coined as [operators](https://operatorhub.io/what-is-an-operator#:~:text=is%20an%20Operator-,What%20is%20an%20Operator%20after%20all%3F,or%20automation%20software%20like%20Ansible.). 
+Operators were classified as one or more Kubernetes controllers, shipping with one or more API extensions (CustomResourceDefinitions) to provide additional functionality to the cluster. 
+Over the last few years of running OLM in production cluster, it became apparent that there's an appetite to deviate from this coupling of CRDs and controllers, to encompass the lifecycling 
+of extentions that are not just operators.
 
-More specifically, the created site:
+OLM has been assisting in defining a lifecycle for these extensions in which they get installed, potentially causing other extensions to be installed as well as dependencies, with a limited set of 
+customization of configuration at runtime, an upgrade model following a path defined by the extension developer, and eventual decommission and removal. There is a dependency model in which extensions can 
+rely on each other for required services that are out of scope of the primary purpose of an extension, allowing each extension to focus on a specific purpose. OLM also prevents conflicting 
+extensions from running on the cluster, either with conflicting dependency constraints or conflicts in ownership of services provided via APIs. Since cluster extensions need to be supported 
+with an enterprise-grade product lifecycle, there has been a growing need for allowing operator authors to limit installation and upgrade of their extension by specifing addtional environmental
+constraints as dependencies, primarily to align with what was tested by the operator author's QE processes. In other words, there is an ever growing ask for OLM to allow the author to enforce these 
+support limitations in the form of additional constraints specified by operator authors in their packaging for OLM.
 
-- uses a gem-based approach, i.e. uses a `Gemfile` and loads the `just-the-docs` gem
-- uses the [GitHub Pages / Actions workflow] to build and publish the site on GitHub Pages
+During their lifecycle on the cluster, OLM also manages the permissions and capabilities extensions have on the cluster as well as the permission and access tenants on the cluster have to the 
+extensions. This is done using the Kubernetes RBAC system, in combination with tenant isolation using Kubernetes namespaces. While the interaction surface of the extensions is solely composed of 
+Kubernetes APIs the extensions define, there is an acute need to rethink the way tenant(i.e consumers of extentions) isolation is achieved. The ask from OLM, is to provide tenant isolation in
+a more intuitive way than [is implemented in OLM v0](https://olm.operatorframework.io/docs/advanced-tasks/operator-scoping-with-operatorgroups/#docs)
 
-Other than that, you're free to customize sites that you create with this template, however you like. You can easily change the versions of `just-the-docs` and Jekyll it uses, as well as adding further plugins.
+OLM also defines a packaging model in which catalogs of extensions, usually containing the entire version history of each extension, are made available to clusters for cluster users to 
+browse and select from. While these catalogs have so far been packaged and shipped as container images, there is a growing appetite to allow more ways of packaging and shipping these catalogs,
+besides also simplifying the building process of these catalogs, which so far have been very costly. The effort to bring down the cost was kicked off in OLM v0 with conversion of the underlying
+datastore for catalog metadata to [File-based Catalogs](https://olm.operatorframework.io/docs/reference/file-based-catalogs/), with more effort being invested to slim down the process in v1. 
+Via new versions of extensions delivered with this packaging system, OLM is able to apply updates to existing running extensions on the cluster in a way where the integrity of the cluster is 
+maintained and constraints and dependencies are kept satisfied.
 
-[Browse our documentation][Just the Docs] to learn more about how to use this theme.
+Finally, the scope of OLM's area of operation in v0 is the one cluster it is running on, with namespace-based handling of catalog access and extension API accessibility and discoverability.
+Expansion of this scope is indirectly expected through the work of the [Kubernetes Control Plane (kcp) project](https://github.com/kcp-dev/kcp), which in its first incarnation will likely 
+use its own synchronization mechanism to get OLM-managed extensions deployed eventually on one or more physical clusters from a shared, virtual control plane called a “workspace”. 
+While this is an area under active development and subject to change, OLM will most likely need to become aware of kcp in a future state. In v1 of OLM, the scope of OLM will increase to span 
+multiple clusters following the kcp model, though likely many aspects of this will become transparent to OLM itself through the workspace abstraction that kcp provides. 
+So in other words, what needs to change in OLM 1.0 is how all of the tasks mentioned above are carried out from the user perspective, and how much control users have in the process, and which 
+persona is involved.
 
-To get started with creating a site, just click "[use this template]"!
 
-If you want to maintain your docs in the `docs` directory of an existing project repo, see [Hosting your docs from an existing project repo](https://github.com/just-the-docs/just-the-docs-template/blob/main/README.md#hosting-your-docs-from-an-existing-project-repo) in the template README.
+For a more detailed writeup of the requriements from OLM v1, please read the [Product Requiment Documentation](/docs/olmv1_roadmap.md)
 
-----
+# OLM v1 progress report
 
-[^1]: [It can take up to 10 minutes for changes to your site to publish after you push the changes to GitHub](https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/creating-a-github-pages-site-with-jekyll#creating-your-site).
+The OLM v1 project is being tracked in the github project https://github.com/orgs/operator-framework/projects/8/
 
-[Just the Docs]: https://just-the-docs.github.io/just-the-docs/
-[GitHub Pages]: https://docs.github.com/en/pages
-[README]: https://github.com/just-the-docs/just-the-docs-template/blob/main/README.md
-[Jekyll]: https://jekyllrb.com
-[GitHub Pages / Actions workflow]: https://github.blog/changelog/2022-07-27-github-pages-custom-github-actions-workflows-beta/
-[use this template]: https://github.com/just-the-docs/just-the-docs-template/generate
