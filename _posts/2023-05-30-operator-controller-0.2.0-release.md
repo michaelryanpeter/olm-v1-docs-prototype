@@ -2,9 +2,9 @@
 layout: post
 title: Operator Contorller v0.2.0
 author: Operator Framework Community
-
 ---
 
+The Operator Framework community is proud to announce the release of Operator Contoller version 0.2.0. This release is part of the Milestone 4, which you can track on our GitHub Issues board. You can find a recorded demo of the features and improvements this release brings on our YouTube page.
 
 ## Installation
 
