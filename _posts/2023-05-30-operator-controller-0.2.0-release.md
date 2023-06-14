@@ -1,9 +1,10 @@
 ---
 layout: post
-title: Operator Controller v0.2.0 released!
-tags: operator-controller
+title: Operator Contorller v0.2.0
+author: Operator Framework Community
+
 ---
-# Operator Controller v0.2.0
+
 
 ## Installation
 
