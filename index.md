@@ -1,5 +1,5 @@
 ---
-title: Why OLM v1?
+title: Home
 layout: home
 ---
 
