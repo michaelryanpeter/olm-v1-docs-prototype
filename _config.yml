@@ -1,8 +1,8 @@
-title: Just the Docs Template
-description: A starter template for a Jeykll site using the Just the Docs theme!
+title: OLM v1 Documentation
+description: An Operator Framework docs prototype
 theme: just-the-docs
 
-url: https://just-the-docs.github.io
+url: https://michaelryanpeter.github.io/olm-v1-docs-prototype
 
 aux_links:
   Template Repository: https://github.com/just-the-docs/just-the-docs-template
