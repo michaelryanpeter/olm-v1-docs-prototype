@@ -1,3 +1,8 @@
+---
+title: Why OLM v1?
+layout: home
+---
+
 # Why are we building OLM v1?
 
 Operator-lifecycle-manager's mission has been to manage the lifecycle of cluster extensions centrally and declaratively on Kubernetes clusters. Its purpose has always been to make installing, 
