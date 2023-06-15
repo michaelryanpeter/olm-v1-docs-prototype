@@ -1,6 +1,8 @@
 ---
 title: Operator Controller
 layout: default
+parent: Architecture
+nav_order: 1
 ---
 
 # Operator Controller

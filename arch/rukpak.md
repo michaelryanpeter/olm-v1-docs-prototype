@@ -1,6 +1,8 @@
 ---
 title: RukPak
 layout: default
+parent: Architecture
+nav_order: 4
 ---
 
 # RukPak

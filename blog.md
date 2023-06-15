@@ -1,5 +1,5 @@
 ---
 title: CHANGEBLOG
 layout: home
-order: 4
+nav_order: 4
 ---
