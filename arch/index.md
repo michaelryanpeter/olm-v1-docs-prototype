@@ -1,7 +1,8 @@
 ---
 layout: default
 title: Architecture
-order: 3
+nav_order: 3
+has_children: true
 ---
 
 # OLM v1 Architecture

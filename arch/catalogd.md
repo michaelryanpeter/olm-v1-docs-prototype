@@ -1,6 +1,8 @@
 ---
 title: Catalogd
 layout: default
+parent: Architecture
+nav_order: 2
 ---
 
 # Catalogd

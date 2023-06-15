@@ -1,6 +1,8 @@
 ---
 title: Deppy
 layout: default
+parent: Architecture
+nav_order: 3
 ---
 # deppy
 
