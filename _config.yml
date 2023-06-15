@@ -3,6 +3,3 @@ description: An Operator Framework docs prototype
 theme: just-the-docs
 
 url: https://michaelryanpeter.github.io/olm-v1-docs-prototype
-
-aux_links:
-  Template Repository: https://github.com/just-the-docs/just-the-docs-template
